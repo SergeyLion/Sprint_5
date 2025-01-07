@@ -1,12 +1,10 @@
-from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from element_locator_map import Locators as Ls
 from config import StoreConfig as Sc
 
 
-driver = webdriver.Chrome()
-def test_sign_in_homepage_button():
+def test_sign_in_homepage_button(driver):
     #Открытие страницы магазина
     driver.get(Sc.URL_STELLAR_BURGERS)
 
@@ -24,4 +22,3 @@ def test_sign_in_homepage_button():
     WebDriverWait(driver, Sc.TIMEOUT).until(expected_conditions.element_to_be_clickable(Ls.BUTTON_ORDER_MAIN_PAGE))
     assert driver.find_element(*Ls.BUTTON_ORDER_MAIN_PAGE).text == "Оформить заказ"
 
-    driver.quit()

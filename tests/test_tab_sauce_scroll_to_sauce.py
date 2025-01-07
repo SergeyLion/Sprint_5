@@ -1,12 +1,10 @@
-from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from element_locator_map import Locators as Ls
 from config import StoreConfig as Sc
 
 
-driver = webdriver.Chrome()
-def test_tab_sauce_scroll_to_sauce():
+def test_tab_sauce_scroll_to_sauce(driver):
     #Открытие страницы магазина
     driver.get(Sc.URL_STELLAR_BURGERS)
 
@@ -27,4 +25,3 @@ def test_tab_sauce_scroll_to_sauce():
     #Проверка активности таба "Соусы"
     assert "tab_tab_type_current" in driver.find_element(*Ls.TAB_SAUCE).get_attribute('class')
 
-    driver.quit()

@@ -1,12 +1,10 @@
-from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from element_locator_map import Locators as Ls
 from config import StoreConfig as Sc
 
 
-driver = webdriver.Chrome()
-def test_tab_bun_scroll_to_bun():
+def test_tab_bun_scroll_to_bun(driver):
     #Открытие страницы магазина
     driver.get(Sc.URL_STELLAR_BURGERS)
 
@@ -31,4 +29,3 @@ def test_tab_bun_scroll_to_bun():
     #Проверка активности таба "Булки"
     assert "tab_tab_type_current" in driver.find_element(*Ls.TAB_BUN).get_attribute('class')
 
-    driver.quit()

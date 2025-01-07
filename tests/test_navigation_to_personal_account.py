@@ -1,12 +1,10 @@
-from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from element_locator_map import Locators as Ls
 from config import StoreConfig as Sc
 
 
-driver = webdriver.Chrome()
-def test_navigation_to_personal_account():
+def test_navigation_to_personal_account(driver):
     #Открытие страницы магазина
     driver.get(Sc.URL_STELLAR_BURGERS)
 
@@ -29,4 +27,3 @@ def test_navigation_to_personal_account():
     WebDriverWait(driver, Sc.TIMEOUT).until(expected_conditions.visibility_of_element_located(Ls.INPUT_LOGIN_PROFILE))
     assert driver.find_element(*Ls.INPUT_LOGIN_PROFILE).get_attribute("value") == "sergeylvov17777@yandex.ru"
 
-    driver.quit()

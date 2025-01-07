@@ -1,12 +1,10 @@
-from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from element_locator_map import Locators as Ls
 from config import StoreConfig as Sc
 
 
-driver = webdriver.Chrome()
-def test_sign_out():
+def test_sign_out(driver):
     #Открытие страницы магазина
     driver.get(Sc.URL_STELLAR_BURGERS)
 
@@ -33,4 +31,3 @@ def test_sign_out():
     assert driver.find_element(*Ls.BUTTON_AUTH_SIGN_IN).text == "Войти"
 
 
-    driver.quit()

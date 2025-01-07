@@ -1,4 +1,3 @@
-from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from element_locator_map import Locators as Ls
@@ -6,8 +5,7 @@ from generate_email_and_password import generate_random_email, generate_random_p
 from config import StoreConfig as Sc
 
 
-driver = webdriver.Chrome()
-def test_registration_success():
+def test_registration_success(driver):
     #Открытие страницы магазина
     driver.get(Sc.URL_STELLAR_BURGERS)
 
@@ -32,4 +30,3 @@ def test_registration_success():
     WebDriverWait(driver, Sc.TIMEOUT).until(expected_conditions.element_to_be_clickable(Ls.BUTTON_AUTH_SIGN_IN))
     assert driver.find_element(*Ls.BUTTON_AUTH_SIGN_IN).text == "Войти"
 
-    driver.quit()

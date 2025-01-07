@@ -1,12 +1,10 @@
-from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from element_locator_map import Locators as Ls
 from config import StoreConfig as Sc
 
 
-driver = webdriver.Chrome()
-def test_navigation_to_homepage():
+def test_navigation_to_homepage(driver):
     #Открытие страницы магазина
     driver.get(Sc.URL_STELLAR_BURGERS)
 
@@ -32,4 +30,3 @@ def test_navigation_to_homepage():
     WebDriverWait(driver, Sc.TIMEOUT).until(expected_conditions.visibility_of_element_located(Ls.BUTTON_ORDER_MAIN_PAGE))
     assert driver.find_element(*Ls.BUTTON_ORDER_MAIN_PAGE).text == "Оформить заказ"
 
-    driver.quit()
